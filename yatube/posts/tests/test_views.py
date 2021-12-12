@@ -110,10 +110,10 @@ class PostPagesTests(TestCase):
             content_type='image/gif'
         )
         cls.post = Post.objects.create(
-                author=cls.author,
-                text='Тестовый пост',
-                group=cls.group,
-                image=cls.uploaded
+            author=cls.author,
+            text='Тестовый пост',
+            group=cls.group,
+            image=cls.uploaded
         )
         cls.authorized_client_author = Client()
         cls.authorized_client_author.force_login(cls.author)
