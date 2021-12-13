@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% load user_filters %}
 {% block title %}Пост "{{ user_single_post.text|truncatechars:30 }}"{% endblock %}
 {% block content %}
   <div class="row">
@@ -10,17 +9,20 @@
           Дата публикации: {{ user_single_post.pub_date|date:"d E Y" }}
         </li>
         <li class="list-group-item">
-          Группа: {{ user_single_post.group.title }}
+          Группа:
           {% if user_single_post.group %}
             <a href="{% url 'posts:group_list' user_single_post.group.slug %}">
-              все записи группы
+              {{ user_single_post.group.title }}
             </a>
           {% else %}
             <a>Записи в группе отсутствуют</a>
           {% endif %}
         </li>
         <li class="list-group-item">
-          Автор: {{ user_single_post.author.get_full_name }}
+          Автор:
+          <a href="{% url 'posts:profile' user_single_post.author.username %}">
+            {{ user_single_post.author.get_full_name }}
+          </a>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           Всего постов автора: <span>{{ user_single_post.author.posts.count}}</span>
@@ -39,40 +41,11 @@
       <p>
         {{ user_single_post.text }}
       </p>
-      {% if user_single_post.author_id == user.id  %}
+      {% if user_single_post.author == user  %}
         <a href="{% url 'posts:post_edit' user_single_post.pk %}"
         >редактировать пост</a>
       {% endif %}
-
-      {% if user.is_authenticated %}
-        <div class="card my-4">
-          <h5 class="card-header">Добавить комментарий:</h5>
-          <div class="card-body">
-            <form method="post" action="{% url 'posts:add_comment' user_single_post.id %}">
-              {% csrf_token %}
-              <div class="form-group mb-2">
-                {{ form.text|addclass:"form-control" }}
-              </div>
-              <button type="submit" class="btn btn-primary">Отправить</button>
-            </form>
-          </div>
-        </div>
-      {% endif %}
-
-      {% for comment in comments %}
-        <div class="media mb-4">
-          <div class="media-body">
-            <h5 class="mt-0">
-              <a href="{% url 'posts:profile' comment.author.username %}">
-                {{ comment.author.username }}
-              </a>
-            </h5>
-              <p>
-               {{ comment.text }}
-              </p>
-            </div>
-          </div>
-      {% endfor %}
+    {% include 'posts/includes/comment.html' %}
     </article>
   </div>
 {% endblock %}

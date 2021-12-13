@@ -47,7 +47,7 @@ def profile(request, username):
 
 def post_detail(request, post_id):
     user_single_post = get_object_or_404(Post, pk=post_id)
-    comments = Comment.objects.all().filter(post_id=post_id)
+    comments = user_single_post.comments.all().filter(post_id=post_id)
     form = CommentForm(request.POST or None)
     context = {
         'user_single_post': user_single_post,
@@ -121,7 +121,7 @@ def follow_index(request):
 def profile_follow(request, username):
     user = request.user
     author = get_object_or_404(User, username=username)
-    if author.username != user.username:
+    if author != user:
         Follow.objects.get_or_create(user=user, author=author)
     return redirect('posts:profile', username=username)
 
