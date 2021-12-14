@@ -11,6 +11,9 @@
     <hr>
     <article>
       {% include 'posts/includes/post_list.html' with display_author=True %}
+      {% comment %}
+        {% for post in posts %}{% endfor %}
+      {% endcomment %}
     </article>
     {% include 'posts/includes/paginator.html' %}
   </div>

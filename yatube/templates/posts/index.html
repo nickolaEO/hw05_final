@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% load cache %}
 {% block title %}Последние обновления на сайте{% endblock %}
 {% block content %}
   <div class="container py-5">
     <h1>Последние обновления на сайте</h1>
     {% include 'posts/includes/switcher.html' %}
+    {% load cache %}
     {% cache 20 article %}
     <article>
       {% include 'posts/includes/post_list.html' with display_group=True display_author=True %}
