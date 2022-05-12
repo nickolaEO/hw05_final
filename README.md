@@ -1,3 +1,45 @@
-# hw05_final
+# **YaTube**
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+### _социальная сеть_
+
+# Описание
+
+Социальная сеть для публикации личных дневников. Пользователям предоставляется возможность _создать_ учетную запись, _опубликовать_ посты, _подписываться_ на любимых авторов, _комментировать_ и _отмечать_ понравившиеся записи.
+Помимо этого, пользователю предоставляется возможность прикреплять _изображения_ к постам, а также можно добавлять свои посты в различные _группы_. Например, пользователь-кулинар может запостить рецепт приготовления пюрешки с котлеткой, дополнить фотографией ингредиентов и добавить пост в группу "Кулинарные мастера".
+
+# Технологии
+
+- [Python 3.8.8](https://www.python.org/downloads/release/python-388/)
+- [Django 2.2.16](https://www.djangoproject.com/)
+
+# Установка
+
+Клонируйте репозиторий и перейдите в него в командной строке:
+```sh
+git clone https://github.com/nickolaEO/hw05_final.git
+```
+```sh
+cd hw05_final
+```
+Создайте и активируйте виртуальное окружение:
+```sh
+python -m venv venv
+```
+```sh
+source venv/Scripts/activate
+```
+Установите зависимости из файла _requirements.txt_:
+```sh
+python -m pip install --upgrade pip
+```
+```sh
+pip install -r requirements.txt
+```
+Выполните миграции:
+```sh
+python manage.py migrate
+```
+Запустите проект:
+```sh
+python manage.py runserver
+```
