@@ -16,10 +16,10 @@
 
 Клонируйте репозиторий и перейдите в него в командной строке:
 ```sh
-git clone https://github.com/nickolaEO/hw05_final.git
+git clone https://github.com/nickolaEO/yatube_final.git
 ```
 ```sh
-cd hw05_final
+cd yatube_final
 ```
 Создайте и активируйте виртуальное окружение:
 ```sh
